@@ -80,8 +80,8 @@ public class EvdValueModifierOption extends SpruceOption {
                         }
                         try {
                             var i = Integer.parseInt(this.getText());
-                            if (i > 32 * 16) {
-                                this.setText((32 * 16) + "");
+                            if (i > 10000) {
+                                this.setText((10000) + "");
                             }
 
                         } catch (Exception e) {}
@@ -118,10 +118,10 @@ public class EvdValueModifierOption extends SpruceOption {
                 if (!input.isEmpty() && !input.equals("-")) {
                     try {
                         var value = Integer.parseInt(input);
-                        this.setValue(MathHelper.clamp(value, -1, 32 * 16));
+                        this.setValue(MathHelper.clamp(value, -1, 10000));
                         if (this.getValue() == -1) {
                             text.setEditableColor(0x777777);
-                        } else if (value > 32 * 16) {
+                        } else if (value > 10000) {
                             text.setEditableColor(0xff2222);
                         } else {
                             text.setEditableColor(0xffffff);

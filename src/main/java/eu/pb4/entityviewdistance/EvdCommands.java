@@ -54,7 +54,7 @@ public class EvdCommands {
                                                 return builder.buildFuture();
                                             })
                                             .executes(EvdCommands::getEntity)
-                                            .then(argument("distance", IntegerArgumentType.integer(-1, 32 * 16))
+                                            .then(argument("distance", IntegerArgumentType.integer(-1, 10000))
                                                     .executes(EvdCommands::setEntity)
                                             )
                                     )
@@ -72,7 +72,7 @@ public class EvdCommands {
 
     private static int setEntity(CommandContext<ServerCommandSource> context) {
         var identifier = context.getArgument("entity", Identifier.class);
-        var val = MathHelper.clamp(context.getArgument("distance", Integer.class), -1, 32 * 16);
+        var val = MathHelper.clamp(context.getArgument("distance", Integer.class), -1, 10000);
         ConfigManager.getConfig().entityViewDistances.put(identifier, val);
         context.getSource().sendFeedback( () -> Text.literal("Changed " + identifier + " view distance to " + val + " blocks"), false);
         EvdUtils.updateAll();
